@@ -1,11 +1,3 @@
-//
-//  ContentView.swift
-//  WeSplit
-//
-//  Created by Natalia Braz on 20/01/21.
-//  Copyright © 2021 Natalia Braz. All rights reserved.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -25,6 +17,16 @@ struct ContentView: View {
     let amountPerPerson = grandTotal / peopleCount
     
     return amountPerPerson
+  }
+  
+  var grandTotal: Double {
+    let orderAmount = Double(checkAmount) ?? 0
+    let tipSelection = Double(tipPercentages[tipPercentage])
+    
+    let tipValue = orderAmount / 100 * tipSelection
+    let grandTotal = orderAmount + tipValue
+
+    return grandTotal
   }
   
   var body: some View {
@@ -47,6 +49,9 @@ struct ContentView: View {
             }
           }
           .pickerStyle(SegmentedPickerStyle())
+        }
+        Section(header: Text("Total amount")) {
+          Text("$\(grandTotal, specifier: "%.2f")")
         }
         Section(header: Text("Amount per person")) {
           Text("$\(totalPerPerson, specifier: "%.2f")")
