@@ -36,7 +36,7 @@ struct ContentView: View {
           TextField("Amount", text: $checkAmount)
             .keyboardType(.decimalPad)
           TextField("Number of people", text: $numberOfPeople)
-            .keyboardType(.decimalPad)
+            .keyboardType(.numberPad)
         }
         Section(header: Text("How much tip do you want to leave?")) {
           Picker("Tip percentage", selection: $tipPercentage) {
